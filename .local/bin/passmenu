@@ -1,0 +1,6 @@
+#!/bin/sh
+
+prefix=${PASSWORD_STORE_DIR-~/.password-store}
+chosen=$(find "$prefix" -name "*.gpg" -printf "%P\n" | sed 's/\.gpg//' | dmenu $@)
+pass -c $chosen
+notify-send "🔐 '$chosen' copied to clipboard"

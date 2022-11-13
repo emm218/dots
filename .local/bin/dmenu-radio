@@ -1,0 +1,9 @@
+#!/bin/sh
+
+idx=$(dmenu -ix $@ < $XDG_DATA_HOME/playlists/radio.dmenu)
+
+if [ "$idx" ]; then
+	mpc clear
+	mpc load radio
+	mpc play $(($idx + 1))
+fi

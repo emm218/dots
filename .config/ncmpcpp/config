@@ -1,0 +1,17 @@
+main_window_color=magenta
+
+song_columns_list_format= "(3)[]{} (40)[magenta]{t} (30)[cyan]{b} (1)[cyan]{a}"
+playlist_display_mode=columns
+titles_visibility=no
+media_library_primary_tag = album_artist
+
+mpd_music_dir=~/music
+lyrics_directory = ~/.local/share/lyrics
+current_item_prefix=$r
+song_status_format={%a - }{%t}|{%f}
+
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "visualizer"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = "+|"

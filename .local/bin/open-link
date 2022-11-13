@@ -1,0 +1,6 @@
+#!/bin/sh
+
+case "$1" in
+	*youtube*) exec mpv --slang=en --really-quiet --no-terminal $1 ;;
+	*)	exec links $1 ;;
+esac

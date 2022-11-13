@@ -1,0 +1,25 @@
+#!/bin/sh
+
+if [ ! "$XDG_DATA_HOME" ]; then
+	XDG_DATA_HOME=$HOME/.local/share
+fi
+if [ ! "$XDG_STATE_HOME" ]; then
+	XDG_STATE_HOME=$HOME/.local/state
+fi
+
+recent="$XDG_STATE_HOME/recent-emoji"
+list="$XDG_DATA_HOME/emoji"
+
+touch "$recent"
+
+chosen=$(cat "$recent" "$list" | dmenu -i -l 15 $@)
+
+[ ! "$chosen" ] && exit
+
+awk -v c="$chosen" 'BEGIN {print c}; $0 != c { print; n++ }; n == 15 { exit }' "$recent" > "$recent.new"
+mv "$recent.new" "$recent"
+
+chosen="${chosen%% *}"
+
+printf "$chosen" | xclip -selection clipboard
+notify-send "'$chosen' copied to clipboard"

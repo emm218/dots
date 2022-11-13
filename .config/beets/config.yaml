@@ -1,0 +1,12 @@
+plugins: discogs
+
+directory: ~/music
+library: ~/.local/share/music.db
+
+import:
+    move: yes
+
+asciify_paths: yes
+
+paths:
+  default: $albumartist/$album ($year)/$track - $title

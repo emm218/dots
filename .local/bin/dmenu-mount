@@ -1,0 +1,11 @@
+#!/bin/sh
+
+usbdrives="$(lsblk -rpo "name,type,size,label,mountpoint,fstype" | grep -v crypto_LUKS | grep 'part\|rom' | sed 's/ /:/g' | awk -F':' '$5==""{printf "%s (%s) %s\n",$1,$3,$4}')"
+
+if [ -z "$usbdrives" ]; then
+	echo "no usb drive detected" && exit
+else
+	chosen="$(echo "$usbdrives" | dmenu -i -p "Mount which drive?")" || exit 1
+  chosen="$(echo "$chosen" | awk '{print $1}')"
+  mount "$chosen" 2>/dev/null && notify-send "💻 USB mounting" "$chosen mounted." && exit 0
+fi

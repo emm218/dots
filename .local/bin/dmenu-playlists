@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# depends on shuffle-albums program
+
+if [ "$1" = '-z' ]; then
+	shuffle='yes'
+	shift
+fi
+
+pl=$(mpc lsplaylists | sed '/radio/d' | dmenu $@ )
+
+if [ "$pl" ]; then
+	mpc clear
+	mpc load "$pl"
+	if [ "$shuffle" ]; then
+		shuffle-albums
+	fi
+	mpc play
+fi
