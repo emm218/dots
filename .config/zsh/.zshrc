@@ -41,8 +41,28 @@ preexec () {
 	xtitle "$1"
 }
 
+ex () {
+     if [ -f $1 ] ; then
+         case $1 in
+             *.tar.*)     tar xf $1      ;;
+             *.bz2)       bunzip2 $1     ;;
+             *.rar)       rar x $1       ;;
+             *.gz)        gunzip $1      ;;
+             *.tbz2)      tar xjf $1     ;;
+             *.tgz)       tar xzf $1     ;;
+             *.zip)       unzip $1       ;;
+             *.Z)         uncompress $1  ;;
+             *.7z)        7z x $1    ;;
+             *)           echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
 bindkey -s '^o' 'lfcd\n'
 bindkey -s '^f' 'fg\n'
+bindkey -s '^h' 'cd\n'
 
 alias sudo="doas"
 alias vim="nvim"
@@ -52,9 +72,11 @@ alias xbps-remove="doas xbps-remove"
 alias xbps-search="xbps-query -Rs"
 alias xbps-update='xbps-install -Syu && kill -46 $(pidof dwmblocks)'
 alias ls="ls --color"
+alias ll="ls -l"
 alias less="less -R"
 alias newsboat="newsboat --url-file=~/.config/newsboat/urls"
 alias fd="fd -H"
 alias config='git --git-dir="$XDG_CONFIG_HOME/dots.git" --work-tree="$HOME"'
+alias sudoedit="sudo nvim -u /home/anon/.config/nvim/init.vim"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

@@ -21,6 +21,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 call plug#end()
@@ -50,8 +51,14 @@ command! -bang -nargs=? -complete=dir AllFiles
 			\ }, <bang>0))
 
 let g:Hexokinase_highlighters = ['backgroundfull']
+let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript']
 
-lua require("catppuccin").setup({transparent_background = true,})
+lua require("catppuccin").setup({
+			\ transparent_background = true,
+			\	color_overrides = { mocha = { 
+			\		surface2 = "#b4befe",
+			\		surface1 = "#b4befe",
+			\	}}})
 
 colorscheme catppuccin-mocha
 " -----------------------------------------------------------------------------

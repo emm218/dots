@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATH=$PATH:$HOME/.local/bin
+PATH=$PATH:$HOME/.local/bin:/usr/lib/ruby/gems/3.1.0/bin
 export MANPATH=$(manpath)
 
 export XDG_DATA_HOME=$HOME/.local/share
@@ -16,6 +16,7 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export TERMINFO=$XDG_DATA_HOME/terminfo
 export TERMINFO_DIRS=$XDG_DATA_HOME/terminfo:/usr/share/terminfo
+export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch-config
 export MIX_XDG=1
 
 . $CARGO_HOME/env
@@ -28,10 +29,8 @@ mpv --no-audio-display $HOME/.local/share/startup.wav &
 ibus-daemon -drxR
 fehbg
 pidof mpd || mpd
-pidof mpdas || mpdas -d
 pidof redshift || redshift &
+xbacklight -set 5
 picom -b
-dwmblocks &
-mpdup &
 remaps
 exec ssh-agent dwm
