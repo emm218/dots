@@ -18,6 +18,10 @@ export TERMINFO=$XDG_DATA_HOME/terminfo
 export TERMINFO_DIRS=$XDG_DATA_HOME/terminfo:/usr/share/terminfo
 export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch-config
 export MIX_XDG=1
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
+export EDITOR=/usr/bin/nvim
 
 . $CARGO_HOME/env
 
@@ -33,4 +37,5 @@ pidof redshift || redshift &
 xbacklight -set 5
 picom -b
 remaps
+sudo protonvpn c --p2p
 exec ssh-agent dwm

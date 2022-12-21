@@ -4,3 +4,9 @@ color listfocus						green		black bold
 color listnormal_unread		red			black
 color listfocus_unread		red			black	bold
 color info								magenta	black
+
+unbind-key DOWN
+bind-key j down
+
+unbind-key UP
+bind-key k up

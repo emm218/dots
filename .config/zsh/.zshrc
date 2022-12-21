@@ -63,7 +63,9 @@ ex () {
 bindkey -s '^o' 'lfcd\n'
 bindkey -s '^f' 'fg\n'
 bindkey -s '^h' 'cd\n'
+bindkey -s '^r' 'rl\n'
 
+alias rl=". ~/.config/zsh/.zshrc"
 alias sudo="doas"
 alias vim="nvim"
 alias vi="nvim"
@@ -78,5 +80,6 @@ alias newsboat="newsboat --url-file=~/.config/newsboat/urls"
 alias fd="fd -H"
 alias config='git --git-dir="$XDG_CONFIG_HOME/dots.git" --work-tree="$HOME"'
 alias sudoedit="sudo nvim -u /home/anon/.config/nvim/init.vim"
+alias psg="ps aux | grep"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

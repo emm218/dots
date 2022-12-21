@@ -10,3 +10,4 @@ asciify_paths: yes
 
 paths:
   default: $albumartist/$album ($year)/$track - $title
+  singleton: $albumartist/$title
