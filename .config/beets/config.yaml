@@ -11,3 +11,4 @@ asciify_paths: yes
 paths:
   default: $albumartist/$album ($year)/$track - $title
   singleton: $albumartist/$title
+  comp: Compilations/$album ($year)/$track - $artist - $title

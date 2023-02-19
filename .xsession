@@ -30,12 +30,10 @@ rm -f .xsession-errors
 
 rm -f $HOME/pics/screenshots/*.png
 mpv --no-audio-display $HOME/.local/share/startup.wav &
-ibus-daemon -drxR
 fehbg
 pidof mpd || mpd
 pidof redshift || redshift &
 xbacklight -set 5
 picom -b
 remaps
-sudo protonvpn c --p2p
 exec ssh-agent dwm
