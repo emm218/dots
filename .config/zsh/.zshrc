@@ -81,5 +81,6 @@ alias fd="fd -H"
 alias config='git --git-dir="$XDG_CONFIG_HOME/dots.git" --work-tree="$HOME"'
 alias sudoedit="sudo nvim -u /home/anon/.config/nvim/init.vim"
 alias psg="ps aux | grep"
+alias vicfg="vi .config/nvim/init.vim"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

@@ -10,6 +10,12 @@ set clipboard=unnamedplus
 set termguicolors
 
 " -----------------------------------------------------------------------------
+" File Type Specific Stuff
+" -----------------------------------------------------------------------------
+
+autocmd FileType c setlocal shiftwidth=8 tabstop=8 noexpandtab
+
+" -----------------------------------------------------------------------------
 " Plugins
 " -----------------------------------------------------------------------------
 
@@ -23,8 +29,14 @@ Plug 'sheerun/vim-polyglot'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'rust-lang/rust.vim'
+Plug 'preservim/tagbar'
 
 call plug#end()
+
+syntax enable
+filetype plugin indent on
+let g:rustfmt_autosave = 1
 
 let g:fzf_layout = {'up':'~90%',
 		\ 'window': {
@@ -71,6 +83,9 @@ nmap <leader>F :AllFiles<cr>
 nmap <leader>f :Files<cr>
 nmap <leader>b :Buffers<cr>
 
+nmap <leader>c :TagbarToggle<cr>
+
+nnoremap <tab> <C-w>
 " nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? 
 "			\ ':NERDTreeClose<CR>' : @% == '' ? 
 "			\ ':NERDTree<CR>' : ':NERDTreeFind<CR>'

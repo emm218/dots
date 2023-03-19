@@ -29,11 +29,10 @@ exec 2> $XDG_STATE_HOME/.xsession-errors
 rm -f .xsession-errors
 
 rm -f $HOME/pics/screenshots/*.png
-mpv --no-audio-display $HOME/.local/share/startup.wav &
 fehbg
 pidof mpd || mpd
 pidof redshift || redshift &
-xbacklight -set 5
+xbacklight -set 10
 picom -b
 remaps
 exec ssh-agent dwm
