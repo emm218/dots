@@ -13,7 +13,9 @@ set termguicolors
 " File Type Specific Stuff
 " -----------------------------------------------------------------------------
 
-autocmd FileType c setlocal shiftwidth=8 tabstop=8 noexpandtab
+autocmd FileType c setlocal equalprg=clang-format shiftwidth=8 tabstop=8 noexpandtab
+autocmd FileType rust setlocal equalprg=rustfmt
+autocmd FileType markdown setlocal textwidth=80 wrapmargin=0 formatoptions+=t linebreak
 
 " -----------------------------------------------------------------------------
 " Plugins

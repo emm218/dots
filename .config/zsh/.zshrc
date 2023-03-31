@@ -6,6 +6,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
+bindkey -e
+
 autoload -U compinit
 zstyle ':completion:*' menu select cache-path $XDG_CACHE_HOME/zsh/zcompcache
 zmodload zsh/complist

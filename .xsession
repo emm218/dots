@@ -6,10 +6,10 @@ export MANPATH=$(manpath)
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_STATE_HOME=$HOME/.local/state
-export GTK_IM_MODULE=xim
-export QT_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export XIM_PROGRAM=ibus
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export XIM_PROGRAM=fcitx5
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
@@ -35,4 +35,5 @@ pidof redshift || redshift &
 xbacklight -set 10
 picom -b
 remaps
+fcitx5 -r &
 exec ssh-agent dwm
