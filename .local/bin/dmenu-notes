@@ -1,6 +1,7 @@
+#!/usr/bin/sh
+
 # modified from the dmenu-notes script in https://github.com/debxp/dmenu-scripts
 
-#!/usr/bin/sh
 notes_path="$HOME/docs/notes"
 
 term="st"
@@ -31,7 +32,6 @@ create_note () {
     filename="$(slugger "$1")"
     note="$notes_path/$filename.md"
     echo "# $1\n\n" > "$note"
-    notify-send -i "notes" "New note!" "The note <b>$filename.md</b> was created in '$notes_path'"
 }
 
 open_note () {
