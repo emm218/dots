@@ -4,7 +4,6 @@ shotpath="$HOME/pics/screenshots"
 mkdir -p "$shotpath"
 
 regions="selection\nfull screen"
-dests="clipboard\nsave"
 
 tmp="$(mktemp)"
 
@@ -15,16 +14,13 @@ case "$(echo "$regions" | dmenu $@)" in
 	"full screen")
 		maim -ouf png > "$tmp"
 		;;
+	*)
+		exit
 esac
 
-case "$(echo "$dests" | dmenu $@)" in
-	"clipboard")
-		xclip -selection clipboard -t image/png < "$tmp"
-		rm "$tmp"
-		;;
-	"save")
-		dest="$(dmenu -p "filename" $@ < /dev/null)"
-		mv "$tmp" "$shotpath/${dest:-$(date '+%Y%m%d%H%M%S')}.png"
-		;;
-esac
+xclip -selection clipboard -t image/png < "$tmp"
+dest="$(dmenu -p "filename" $@ < /dev/null)"
+if [ $dest ]; then
+	mv "$tmp" "$shotpath/${dest}.png"
+fi
 

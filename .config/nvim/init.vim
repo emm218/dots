@@ -9,13 +9,36 @@ set hidden
 set clipboard=unnamedplus
 set termguicolors
 
+function! Preserve(command)
+	let search = @/
+	let cursor_position = getpos('.')
+	normal! H
+	let window_position = getpos('.')
+	call setpos('.', cursor_position)
+
+	execute a:command
+
+	let @/ = search
+	call setpos('.', window_position)
+	normal! zt
+	call setpos('.', cursor_position)
+endfunction
+
+set statusline=%f\ %h%w%m%r
+set statusline+=%{FugitiveStatusline()}
+set statusline+=%=
+set statusline+=%-14.(%l,%c%V%)\ %P
+
 " -----------------------------------------------------------------------------
 " File Type Specific Stuff
 " -----------------------------------------------------------------------------
+let g:c_syntax_for_h = 1
 
-autocmd FileType c setlocal equalprg=clang-format shiftwidth=8 tabstop=8 noexpandtab
-autocmd FileType rust setlocal equalprg=rustfmt
+autocmd FileType c setlocal equalprg=clang-format shiftwidth=8 tabstop=8 signcolumn=yes noexpandtab 
+autocmd FileType c autocmd BufWritePre <buffer> call Preserve('normal gg=G')
+autocmd FileType rust setlocal equalprg=rustfmt signcolumn=yes
 autocmd FileType markdown setlocal textwidth=80 wrapmargin=0 formatoptions+=t linebreak
+autocmd TermOpen * setlocal nonumber norelativenumber
 
 " -----------------------------------------------------------------------------
 " Plugins
@@ -33,6 +56,9 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'rust-lang/rust.vim'
 Plug 'preservim/tagbar'
+Plug 'ap/vim-buftabline'
+Plug 'neovim/nvim-lspconfig'
+Plug 'jessarcher/vim-heritage'
 
 call plug#end()
 
@@ -66,6 +92,10 @@ command! -bang -nargs=? -complete=dir AllFiles
 
 let g:Hexokinase_highlighters = ['backgroundfull']
 let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript']
+let g:tagbar_width = 60
+
+lua require("lspconfig").rust_analyzer.setup({})
+lua require("lspconfig").clangd.setup({})
 
 lua require("catppuccin").setup({
 			\ transparent_background = true,
@@ -73,19 +103,30 @@ lua require("catppuccin").setup({
 			\		surface2 = "#b4befe",
 			\		surface1 = "#b4befe",
 			\	}}})
-
 colorscheme catppuccin-mocha
+
+highlight PmenuSel   guibg=none guifg='#a6e3a1' gui=bold
+highlight TabLineSel guibg=none guifg='#a6e3a1' gui=bold
+highlight TabLine guibg=none guifg='#cdd6f4'
+
 " -----------------------------------------------------------------------------
 " Keymaps
 " -----------------------------------------------------------------------------
 
-let mapleader="\<space>"
+map gf :edit <cfile><cr>
 
+let mapleader="\<space>"
 nmap <leader>F :AllFiles<cr>
 nmap <leader>f :Files<cr>
-nmap <leader>b :Buffers<cr>
-
+nmap <leader>q :bd!<cr>
 nmap <leader>c :TagbarToggle<cr>
+nnoremap <leader>t :term<cr> 
+nnoremap <leader>g :Git<space>
+nnoremap <leader>d <cmd>lua vim.lsp.buf.definition()<cr>
+nnoremap <leader>r <cmd>lua vim.lsp.buf.rename()<cr>
+
+nnoremap <M-tab> :bnext<cr>
+nnoremap <M-S-tab> :bprev<cr>
 
 nnoremap <tab> <C-w>
 " nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? 

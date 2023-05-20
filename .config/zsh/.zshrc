@@ -1,4 +1,5 @@
 autoload -U colors && colors
+setopt autocd
 setopt prompt_subst
 PS1="%{$fg_bold[magenta]%}%~ %(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})> %b%f"
 
@@ -67,6 +68,13 @@ bindkey -s '^f' 'fg\n'
 bindkey -s '^h' 'cd\n'
 bindkey -s '^r' 'rl\n'
 
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
 alias rl=". ~/.config/zsh/.zshrc"
 alias sudo="doas"
 alias vim="nvim"
@@ -81,8 +89,8 @@ alias less="less -R"
 alias newsboat="newsboat --url-file=~/.config/newsboat/urls"
 alias fd="fd -H"
 alias config='git --git-dir="$XDG_CONFIG_HOME/dots.git" --work-tree="$HOME"'
-alias sudoedit="sudo nvim -u /home/anon/.config/nvim/init.vim"
+alias sudoedit="doas-edit"
 alias psg="ps aux | grep"
-alias vicfg="vi .config/nvim/init.vim"
+alias vicfg="vi ~/.config/nvim/init.vim"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

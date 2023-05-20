@@ -28,12 +28,14 @@ export EDITOR=/usr/bin/nvim
 exec 2> $XDG_STATE_HOME/.xsession-errors
 rm -f .xsession-errors
 
-rm -f $HOME/pics/screenshots/*.png
 fehbg
+pipewire &
 pidof mpd || mpd
 pidof redshift || redshift &
 xbacklight -set 10
 picom -b
 remaps
 fcitx5 -r &
+wireplumber &
+pipewire-pulse &
 exec ssh-agent dwm
