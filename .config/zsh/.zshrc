@@ -11,7 +11,7 @@ fi
 
 setopt autocd
 setopt prompt_subst
-PS1='%{$fg_bold[magenta]%}%~ %b%f$(__git_ps1 "(%s) ")%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})> %b%f'
+#PS1='%{$fg_bold[magenta]%}%~ %b%f$(__git_ps1 "(%s) ")%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})> %b%f'
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -50,6 +50,7 @@ esac
 
 precmd () {
 	xtitle "$(print -D $PWD)"	
+	__git_ps1 '%{$fg_bold[magenta]%}%~ %b%f' '%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})> %b%f' '(%s) '
 }
 
 preexec () {
