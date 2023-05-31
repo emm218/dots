@@ -1,11 +1,23 @@
 autoload -U colors && colors
+
+if [ -f ~/.local/share/git-prompt.sh ]; then
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_HIDE_IF_PWD_IGNORED=true
+GIT_PS1_SHOWCOLORHINTS=true
+source ~/.local/share/git-prompt.sh
+fi
+
 setopt autocd
 setopt prompt_subst
-PS1="%{$fg_bold[magenta]%}%~ %(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})> %b%f"
+PS1='%{$fg_bold[magenta]%}%~ %b%f$(__git_ps1 "(%s) ")%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})> %b%f'
 
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
+
+export GPG_TTY=$(tty)
 
 bindkey -e
 
