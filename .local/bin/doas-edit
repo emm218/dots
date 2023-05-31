@@ -1,0 +1,8 @@
+#!/usr/usr/bin/env sh
+
+file=$(mktemp)
+
+doas cp $1 $file
+$EDITOR $file
+doas cp $file $1
+rm $file

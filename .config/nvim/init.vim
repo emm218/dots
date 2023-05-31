@@ -59,6 +59,7 @@ Plug 'preservim/tagbar'
 Plug 'ap/vim-buftabline'
 Plug 'neovim/nvim-lspconfig'
 Plug 'jessarcher/vim-heritage'
+Plug 'shirk/vim-gas'
 
 call plug#end()
 

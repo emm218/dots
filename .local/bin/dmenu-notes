@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/usr/bin/env sh
 
 # modified from the dmenu-notes script in https://github.com/debxp/dmenu-scripts
 

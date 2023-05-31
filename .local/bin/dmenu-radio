@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 idx=$(dmenu -ix $@ < $XDG_DATA_HOME/playlists/radio.dmenu)
 

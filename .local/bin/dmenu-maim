@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/usr/bin/env sh
 
 shotpath="$HOME/pics/screenshots"
 mkdir -p "$shotpath"
