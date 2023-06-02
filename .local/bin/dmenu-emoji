@@ -12,7 +12,7 @@ list="$XDG_DATA_HOME/emoji"
 
 touch "$recent"
 
-chosen=$(cat "$recent" "$list" | dmenu -i -l 15 $@)
+chosen=$(cat "$recent" "$list" | dmenu -i -l 15 $@ | sed 's/\\/\\\\/g')
 
 [ ! "$chosen" ] && exit
 
