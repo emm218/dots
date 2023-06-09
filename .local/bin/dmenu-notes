@@ -4,7 +4,7 @@
 
 notes_path="$HOME/docs/notes"
 
-term="st"
+term="st -c float -g 80x20+325+200"
 edit="nvim"
 
 prompt="-p Note:"
