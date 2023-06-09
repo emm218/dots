@@ -23,6 +23,7 @@ xbacklight -set 10
 picom -b
 remaps
 fcitx5 -r &
+dunst &
 wireplumber &
 pipewire-pulse &
 exec ssh-agent dwm
