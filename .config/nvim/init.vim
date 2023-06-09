@@ -8,6 +8,7 @@ set scrolloff=8
 set hidden
 set clipboard=unnamedplus
 set termguicolors
+set modeline
 
 function! Preserve(command)
 	let search = @/
@@ -60,6 +61,8 @@ Plug 'ap/vim-buftabline'
 Plug 'neovim/nvim-lspconfig'
 Plug 'jessarcher/vim-heritage'
 Plug 'shirk/vim-gas'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-orgmode/orgmode'
 
 call plug#end()
 
