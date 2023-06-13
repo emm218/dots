@@ -33,6 +33,7 @@ fzcd () {
     if [ "$choice" ]; then
         cd "$choice"
     fi
+    clear
 }
 
 case "$TERM" in
