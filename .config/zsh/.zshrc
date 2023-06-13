@@ -29,7 +29,10 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 _comp_options+=(globdots)
 
 fzcd () {
-    cd $(find ~ -type d \( \( -path "*/.*" -o -path "$HOME/music" -o -path "*/target" \) -prune -o -print \) | fzf)
+    choice=$(find ~ -type d \( \( -path "*/.*" -o -path "$HOME/music" -o -path "*/target" \) -prune -o -print \) | fzf)
+    if [ "$choice" ]; then
+        cd "$choice"
+    fi
 }
 
 case "$TERM" in
