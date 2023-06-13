@@ -1,7 +1,6 @@
 #!/bin/sh
 
 PATH=$PATH:$HOME/.local/bin:/usr/lib/ruby/gems/3.1.0/bin
-export MANPATH=$(manpath)
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx

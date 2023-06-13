@@ -5,6 +5,7 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export MIX_XDG=1
 export EDITOR=/usr/bin/nvim
+export MANPATH="$XDG_DATA_HOME"/man:
 
 . "$CARGO_HOME/env"
 
