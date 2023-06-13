@@ -107,12 +107,20 @@ lua require("catppuccin").setup({
 			\		surface2 = "#b4befe",
 			\		surface1 = "#b4befe",
 			\	}}})
-colorscheme catppuccin-mocha
+
+if ( $TERM == 'linux' )
+  colorscheme default
+else
+	colorscheme catppuccin-mocha
+endif
 
 highlight PmenuSel   guibg=none guifg='#a6e3a1' gui=bold
 highlight TabLineSel guibg=none guifg='#a6e3a1' gui=bold
 highlight TabLine guibg=none guifg='#cdd6f4'
 
+lua vim.diagnostic.config({virtual_text = false, update_in_insert = false})
+
+set updatetime=250
 " -----------------------------------------------------------------------------
 " Keymaps
 " -----------------------------------------------------------------------------
@@ -128,6 +136,7 @@ nnoremap <leader>t :term<cr>
 nnoremap <leader>g :Git<space>
 nnoremap <leader>d <cmd>lua vim.lsp.buf.definition()<cr>
 nnoremap <leader>r <cmd>lua vim.lsp.buf.rename()<cr>
+nnoremap <leader>e <cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>
 
 nnoremap <M-tab> :bnext<cr>
 nnoremap <M-S-tab> :bprev<cr>
