@@ -28,14 +28,8 @@ zmodload zsh/complist
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 _comp_options+=(globdots)
 
-lfcd () {
-	tmp="$(mktemp)"
-	lf -last-dir-path="$tmp" "$@"
-	if [ -f "$tmp" ]; then
-		dir="$(cat "$tmp")"
-		rm -f "$tmp"
-		[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-	fi
+fzcd () {
+    cd $(find ~ -type d \( \( -path "*/.*" -o -path "$HOME/music" -o -path "*/target" \) -prune -o -print \) | fzf)
 }
 
 case "$TERM" in
@@ -77,7 +71,7 @@ ex () {
      fi
 }
 
-bindkey -s '^o' 'lfcd\n'
+bindkey -s '^o' 'fzcd\n'
 bindkey -s '^f' 'fg\n'
 bindkey -s '^h' 'cd\n'
 bindkey -s '^r' 'rl\n'
