@@ -29,12 +29,17 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 _comp_options+=(globdots)
 
 fzcd () {
-    choice=$(find ~ -type d \( \( -path "*/.*" -o -path "$HOME/music" -o -path "*/target" \) -prune -o -print \) | fzf)
+    choice=$(fd -H . "$HOME" -tdirectory | \
+        fzf --scheme=path --color=16,fg+:magenta,prompt:green,pointer:green)
     if [ "$choice" ]; then
         cd "$choice"
+        clear
+        precmd
+        zle reset-prompt
     fi
-    clear
 }
+
+zle -N fzcd
 
 case "$TERM" in
 	st*|xterm*|rxvt*)
@@ -75,7 +80,7 @@ ex () {
      fi
 }
 
-bindkey -s '^o' 'fzcd\n'
+bindkey '^o' fzcd
 bindkey -s '^f' 'fg\n'
 bindkey -s '^h' 'cd\n'
 bindkey -s '^r' 'rl\n'
@@ -99,10 +104,10 @@ alias ls="exa -s Name"
 alias ll="exa -l -s Name"
 alias less="less -R"
 alias newsboat="newsboat --url-file=~/.config/newsboat/urls"
-alias fd="fd -H"
 alias config='git --git-dir="$XDG_CONFIG_HOME/dots.git" --work-tree="$HOME"'
 alias sudoedit="doas-edit"
 alias psg="ps aux | grep"
+alias parts="mount -v | grep '^/' | awk '"'{print "Partition ID: " $1 "\n Mountpoint: " $3}'"'"
 alias vicfg="vi ~/.config/nvim/init.vim"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
