@@ -1,19 +1,5 @@
 #!/bin/sh
 
-PATH=$PATH:$HOME/.local/bin:/usr/lib/ruby/gems/3.1.0/bin
-
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export XIM_PROGRAM=fcitx5
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
-export TERMINFO=$XDG_DATA_HOME/terminfo
-export TERMINFO_DIRS=$XDG_DATA_HOME/terminfo:/usr/share/terminfo
-export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch-config
-export TEXMFHOME=$XDG_DATA_HOME/texmf
-export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
-export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
-
 fehbg
 pipewire &
 pidof mpd || mpd
