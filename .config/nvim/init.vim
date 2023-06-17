@@ -53,7 +53,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'Mofiqul/dracula.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'rust-lang/rust.vim'
 Plug 'preservim/tagbar'
@@ -103,20 +103,26 @@ lua require("lspconfig").clangd.setup({})
 
 lua require("catppuccin").setup({
 			\ transparent_background = true,
-			\	color_overrides = { mocha = { 
-			\		surface2 = "#b4befe",
-			\		surface1 = "#b4befe",
-			\	}}})
+			\ custom_highlights = function(colors)
+			\ 	return {
+			\     Comment    = { fg = colors.green },
+			\			PMenuSel 	 = { fg = colors.green },
+			\     TabLineSel = { fg = colors.green, bg = colors.none },
+			\     TabLine    = { fg = colors.text,  bg = colors.none },
+			\  	}
+			\ end})
+
+lua require("dracula").setup({transparent_bg = true, 
+			\ overrides = function(colors) return {
+			\		TabLineFill = { bg = colors.none },
+			\		StatusLine  = { bg = colors.none },
+			\	} end })
 
 if ( $TERM == 'linux' )
   colorscheme default
 else
-	colorscheme catppuccin-mocha
+	colorscheme dracula
 endif
-
-highlight PmenuSel   guibg=none guifg='#a6e3a1' gui=bold
-highlight TabLineSel guibg=none guifg='#a6e3a1' gui=bold
-highlight TabLine guibg=none guifg='#cdd6f4'
 
 lua vim.diagnostic.config({virtual_text = false, update_in_insert = false})
 
