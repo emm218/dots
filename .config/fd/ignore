@@ -1,0 +1,14 @@
+libreoffice
+music
+Signal
+.cache
+.dbus
+share
+state
+elm-compiler*
+.mail
+.mozilla
+.pki
+.pvpn-cli
+.ssh
+*.git
